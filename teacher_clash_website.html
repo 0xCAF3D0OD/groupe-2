@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Clash</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Quicksand for a clean, rounded, and fun look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Quicksand', 'sans-serif'],
+          },
+          colors: {
+            butterYellow: {
+              light: '#FFFDF0',
+              DEFAULT: '#FCF8D5',
+              dark: '#F5EC9C'
+            },
+            pastelPink: {
+              light: '#FFF0F3',
+              DEFAULT: '#FFD1DC',
+              dark: '#FFA6BA'
+            },
+            pastelTurquoise: {
+              light: '#E6F9F9',
+              DEFAULT: '#AEE4E4',
+              dark: '#7CD1D1'
+            },
+            softDark: '#2C3E50'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Fun custom scrollbars */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FFFDF0;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #AEE4E4;
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #7CD1D1;
+    }
+  </style>
+</head>
+<body class="bg-butterYellow-light text-softDark font-sans min-h-screen selection:bg-pastelPink selection:text-softDark">
+
+  <!-- Floating Background Elements for a fun vibe -->
+  <div class="absolute top-10 left-10 w-24 h-24 bg-pastelPink rounded-full filter blur-2xl opacity-40 animate-pulse pointer-events-none"></div>
+  <div class="absolute top-40 right-20 w-32 h-32 bg-pastelTurquoise rounded-full filter blur-3xl opacity-40 animate-pulse pointer-events-none"></div>
+
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 bg-butterYellow-light/80 backdrop-blur-md border-b-4 border-pastelTurquoise px-6 py-4 transition-all">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-3">
+        <span class="text-3xl">✏️</span>
+        <h1 class="text-3xl font-bold tracking-tight text-softDark">
+          Teacher <span class="text-transparent bg-clip-text bg-gradient-to-r from-pastelPink-dark to-pastelTurquoise-dark">Clash</span>
+        </h1>
+      </div>
+      <div class="flex gap-4">
+        <a href="#welcome" class="px-4 py-2 rounded-full font-semibold hover:bg-pastelPink transition duration-300">Welcome</a>
+        <a href="#teachers" class="px-4 py-2 rounded-full font-semibold hover:bg-pastelTurquoise transition duration-300">Teacher Analysis</a>
+        <a href="#arena" class="px-4 py-2 rounded-full font-semibold hover:bg-butterYellow transition duration-300">Clash Arena</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Welcome Section -->
+  <section id="welcome" class="relative max-w-5xl mx-auto px-6 pt-16 pb-12 text-center">
+    <div class="bg-pastelPink-light border-4 border-pastelPink rounded-3xl p-8 md:p-12 shadow-md relative overflow-hidden transition-all hover:shadow-lg">
+      <!-- Decorative corner elements -->
+      <div class="absolute -top-6 -left-6 w-16 h-16 bg-pastelTurquoise rounded-full"></div>
+      <div class="absolute -bottom-6 -right-6 w-20 h-20 bg-butterYellow rounded-full"></div>
+      
+      <span class="inline-block bg-pastelPink text-softDark px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide uppercase mb-6 shadow-sm">
+        🎉 Part 1: Welcome!
+      </span>
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 text-softDark leading-tight">
+        Welcome to our website!
+      </h2>
+      <p class="text-lg md:text-xl text-slate-700 max-w-2xl mx-auto leading-relaxed font-semibold">
+        Here you'll find what our teachers look like if they were animals. Dive into their wild personalities, search for your favorites, and watch them clash in our simulator!
+      </p>
+    </div>
+  </section>
+
+  <!-- Teacher Analysis Section -->
+  <section id="teachers" class="max-w-6xl mx-auto px-6 py-12">
+    <div class="text-center mb-10">
+      <span class="inline-block bg-pastelTurquoise text-softDark px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide uppercase mb-3 shadow-sm">
+        🧬 Part 2: Teacher Analysis
+      </span>
+      <h2 class="text-3xl md:text-4xl font-bold text-softDark">Our Wild Class Roster</h2>
+      <p class="text-gray-600 mt-2">Discover each teacher's spirit animal, traits, and unique classroom quirks.</p>
+
+      <!-- Search Bar -->
+      <div class="mt-8 max-w-md mx-auto">
+        <div class="relative">
+          <input type="text" id="teacherSearch" placeholder="Search for a teacher or animal..." 
+                 class="w-full px-6 py-3 rounded-full border-4 border-pastelTurquoise bg-white shadow-sm focus:outline-none focus:ring-4 focus:ring-pastelPink transition text-softDark font-semibold placeholder-gray-400">
+          <span class="absolute right-5 top-1/2 -translate-y-1/2 text-xl pointer-events-none">🔍</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Teacher Grid -->
+    <div id="teacherGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Cards dynamically generated via JavaScript -->
+    </div>
+  </section>
+
+  <!-- Interactive Clash Arena (Extremely Fun Feature with Dynamic Video) -->
+  <section id="arena" class="max-w-5xl mx-auto px-6 py-12">
+    <div class="bg-pastelTurquoise-light border-4 border-pastelTurquoise rounded-3xl p-8 md:p-12 shadow-md relative">
+      <div class="text-center mb-8">
+        <span class="inline-block bg-butterYellow text-softDark px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide uppercase mb-3 shadow-sm">
+          🎬 Interactive Video Cinema
+        </span>
+        <h2 class="text-3xl font-bold">The Teacher Clash Arena</h2>
+        <p class="text-gray-600 mt-1">Select two contenders, press CLASH, and watch the dynamically rendered fight clip play out!</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 items-stretch gap-6">
+        <!-- Fighter 1 Card Container -->
+        <div id="fighter1Card" class="flex flex-col items-center bg-white p-6 rounded-2xl border-4 border-pastelPink shadow-sm transition-all duration-300 relative overflow-hidden justify-between">
+          <div class="absolute top-0 right-0 bg-yellow-400 text-softDark text-xs font-bold px-3 py-1 rounded-bl-lg hidden" id="fighter1WinnerBadge">🏆 WINNER</div>
+          <div class="w-full text-center">
+            <label class="block text-sm font-semibold text-gray-400 mb-2 uppercase tracking-wider">Contender A</label>
+            <select id="fighter1Select" class="w-full p-2.5 rounded-lg border-2 border-pastelPink text-softDark font-semibold focus:outline-none focus:ring-2 focus:ring-pastelTurquoise bg-white">
+              <!-- Populated via JS -->
+            </select>
+          </div>
+          
+          <div class="my-6">
+            <div id="fighter1Emoji" class="text-7xl transform transition-transform duration-300 inline-block">🦉</div>
+          </div>
+
+          <div class="text-center w-full">
+            <p id="fighter1Name" class="font-bold text-xl text-softDark mb-1">Miss Wiwi</p>
+            <span id="fighter1PowerBadge" class="inline-block bg-butterYellow text-xs font-bold px-2.5 py-1 rounded-full text-gray-700">Power: Night Vision</span>
+          </div>
+        </div>
+
+        <!-- VS Control Circle -->
+        <div class="flex flex-col items-center justify-center min-h-[150px]">
+          <div class="w-16 h-16 rounded-full bg-pastelPink border-4 border-white shadow-lg flex items-center justify-center font-bold text-2xl text-softDark animate-bounce mb-4">
+            VS
+          </div>
+          <button id="clashButton" onclick="triggerClashVideo()" class="px-8 py-4 bg-pastelPink hover:bg-pastelPink-dark text-softDark font-bold text-lg rounded-full shadow-md hover:shadow-xl transition transform active:scale-95 border-2 border-white tracking-wider">
+            CLASH! ⚡
+          </button>
+        </div>
+
+        <!-- Fighter 2 Card Container -->
+        <div id="fighter2Card" class="flex flex-col items-center bg-white p-6 rounded-2xl border-4 border-pastelPink shadow-sm transition-all duration-300 relative overflow-hidden justify-between">
+          <div class="absolute top-0 right-0 bg-yellow-400 text-softDark text-xs font-bold px-3 py-1 rounded-bl-lg hidden" id="fighter2WinnerBadge">🏆 WINNER</div>
+          <div class="w-full text-center">
+            <label class="block text-sm font-semibold text-gray-400 mb-2 uppercase tracking-wider">Contender B</label>
+            <select id="fighter2Select" class="w-full p-2.5 rounded-lg border-2 border-pastelPink text-softDark font-semibold focus:outline-none focus:ring-2 focus:ring-pastelTurquoise bg-white">
+              <!-- Populated via JS -->
+            </select>
+          </div>
+
+          <div class="my-6">
+            <div id="fighter2Emoji" class="text-7xl transform transition-transform duration-300 inline-block">🦆</div>
+          </div>
+
+          <div class="text-center w-full">
+            <p id="fighter2Name" class="font-bold text-xl text-softDark mb-1">M Coco</p>
+            <span id="fighter2PowerBadge" class="inline-block bg-butterYellow text-xs font-bold px-2.5 py-1 rounded-full text-gray-700">Power: Loud Quack</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TV Video Player Screen -->
+      <div id="clashVideoContainer" class="hidden mt-10 transition-all duration-500 scale-95 opacity-0">
+        <div class="bg-slate-900 rounded-3xl border-8 border-slate-800 shadow-2xl overflow-hidden relative">
+          <!-- Top Video Bar / Camcorder HUD -->
+          <div class="absolute top-0 left-0 w-full p-4 flex justify-between items-center z-10 pointer-events-none text-white font-mono text-sm">
+            <div class="flex items-center gap-2 bg-black/40 px-3 py-1 rounded-full">
+              <span class="w-3 h-3 rounded-full bg-red-600 animate-pulse"></span>
+              <span class="font-bold tracking-wider">REC</span>
+            </div>
+            <div class="bg-black/40 px-3 py-1 rounded-full tracking-widest" id="videoTimer">
+              00:00.00
+            </div>
+            <div class="flex items-center gap-2 bg-black/40 px-3 py-1 rounded-full">
+              <span>BAT: 99%</span>
+              <span class="w-6 h-3 border border-white rounded-sm flex items-center p-0.5"><span class="h-full w-4/5 bg-green-400 rounded-2xs"></span></span>
+            </div>
+          </div>
+
+          <!-- Video Viewport (Canvas) -->
+          <div class="relative w-full aspect-video bg-black flex items-center justify-center overflow-hidden">
+            <canvas id="clashCanvas" width="800" height="450" class="w-full h-full block bg-gradient-to-b from-sky-200 to-sky-300"></canvas>
+            
+            <!-- Audio Indicator Bubble overlay -->
+            <div id="sfxIndicator" class="absolute bottom-16 right-6 px-3 py-1 bg-black/50 rounded-full text-xs text-white flex items-center gap-1.5 pointer-events-none">
+              🔊 Live Audio
+            </div>
+          </div>
+
+          <!-- Video Controls -->
+          <div class="bg-slate-800 p-4 flex flex-col md:flex-row items-center gap-4 border-t border-slate-700">
+            <!-- Timeline Scrubber -->
+            <div class="w-full flex items-center gap-3">
+              <span class="text-xs text-slate-400 font-mono" id="currentTrackTime">0.0s</span>
+              <input type="range" id="videoTimeline" min="0" max="6000" value="0" class="w-full h-2 rounded-lg bg-slate-700 appearance-none cursor-pointer accent-pastelPink focus:outline-none">
+              <span class="text-xs text-slate-400 font-mono">6.0s</span>
+            </div>
+
+            <!-- Button Bar -->
+            <div class="w-full md:w-auto flex items-center justify-between md:justify-start gap-4">
+              <!-- Play / Pause -->
+              <button id="videoPlayPauseBtn" onclick="togglePlayPause()" class="w-12 h-12 rounded-full bg-pastelPink hover:bg-pastelPink-dark text-softDark flex items-center justify-center font-bold text-lg shadow transition transform active:scale-90">
+                ⏸️
+              </button>
+              
+              <!-- Replay / Loop -->
+              <button onclick="restartVideo()" class="px-4 py-2 rounded-xl bg-slate-700 hover:bg-slate-600 text-white font-semibold text-sm transition">
+                🔄 Replay Clip
+              </button>
+
+              <!-- Mute Sound -->
+              <button id="soundMuteBtn" onclick="toggleSound()" class="px-4 py-2 rounded-xl bg-slate-700 hover:bg-slate-600 text-white font-semibold text-sm transition flex items-center gap-2">
+                🔊 Sound On
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Written Summary of play-by-play -->
+        <div id="clashResultBox" class="mt-6 p-6 bg-white rounded-2xl border-4 border-pastelTurquoise text-center">
+          <h4 class="font-bold text-2xl text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600 mb-2 flex items-center justify-center gap-2">
+            ✨ Post-Fight Playback Report ✨
+          </h4>
+          <p id="clashResultText" class="text-lg font-semibold text-gray-700 italic px-4 leading-relaxed">Let the clash begin!</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Thanks for Reading Section -->
+  <section id="thanks" class="max-w-4xl mx-auto px-6 py-12 text-center">
+    <div class="bg-pastelPink-light border-4 border-pastelPink rounded-3xl p-8 shadow-sm transition-transform hover:scale-[1.01]">
+      <span class="inline-block bg-pastelPink text-softDark px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide uppercase mb-4 shadow-sm">
+        💖 Part 3: Thanks
+      </span>
+      <p class="text-2xl font-bold text-softDark mb-2">
+        Thank you for reading our website!
+      </p>
+      <p class="text-gray-600 font-semibold">
+        Made with 💖 by your favorite students. Come back for more wild updates!
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-softDark text-white py-8 px-6 mt-16 border-t-8 border-pastelPink">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+      <div>
+        <h3 class="text-2xl font-bold text-pastelTurquoise">Teacher Clash 🐾</h3>
+        <p class="text-gray-300 text-sm mt-1">Celebrating our fantastic teachers, animal style.</p>
+      </div>
+      <p class="text-gray-400 text-sm">
+        &copy; 2026 Teacher Clash. All fun intended!
+      </p>
+    </div>
+  </footer>
+
+  <!-- JavaScript logic for Video Player Canvas, Sound Synthesizer, and Page Data -->
+  <script>
+    // Audio Synth helper
+    let audioCtx = null;
+    let isSoundMuted = false;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      return audioCtx;
+    }
+
+    // Play retro Web Audio generated sounds
+    function playSound(type) {
+      if (isSoundMuted) return;
+      try {
+        const ctx = getAudioContext();
+        if (ctx.state === 'suspended') {
+          ctx.resume();
+        }
+
+        const osc = ctx.createOscillator();
+        const gainNode = ctx.createGain();
+        osc.connect(gainNode);
+        gainNode.connect(ctx.destination);
+
+        const now = ctx.currentTime;
+
+        if (type === 'swoosh') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(150, now);
+          osc.frequency.exponentialRampToValueAtTime(800, now + 0.3);
+          gainNode.gain.setValueAtTime(0.2, now);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+          osc.start(now);
+          osc.stop(now + 0.35);
+        } else if (type === 'hit') {
+          osc.type = 'square';
+          osc.frequency.setValueAtTime(250, now);
+          osc.frequency.setValueAtTime(100, now + 0.05);
+          gainNode.gain.setValueAtTime(0.3, now);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+          osc.start(now);
+          osc.stop(now + 0.2);
+        } else if (type === 'win') {
+          // Retro fanfare
+          const notes = [261.63, 329.63, 392.00, 523.25]; // C E G C
+          notes.forEach((freq, idx) => {
+            const noteOsc = ctx.createOscillator();
+            const noteGain = ctx.createGain();
+            noteOsc.connect(noteGain);
+            noteGain.connect(ctx.destination);
+            
+            noteOsc.type = 'sawtooth';
+            noteOsc.frequency.setValueAtTime(freq, now + idx * 0.1);
+            noteGain.gain.setValueAtTime(0.15, now + idx * 0.1);
+            noteGain.gain.exponentialRampToValueAtTime(0.005, now + idx * 0.1 + 0.25);
+            
+            noteOsc.start(now + idx * 0.1);
+            noteOsc.stop(now + idx * 0.1 + 0.3);
+          });
+        }
+      } catch (e) {
+        console.log("Audio play failed, awaiting interaction", e);
+      }
+    }
+
+    // Toggle Sound Button
+    function toggleSound() {
+      isSoundMuted = !isSoundMuted;
+      const btn = document.getElementById('soundMuteBtn');
+      const indicator = document.getElementById('sfxIndicator');
+      if (isSoundMuted) {
+        btn.innerHTML = "🔇 Sound Off";
+        btn.className = "px-4 py-2 rounded-xl bg-red-800 text-white font-semibold text-sm transition flex items-center gap-2";
+        indicator.textContent = "🔇 Audio Muted";
+      } else {
+        btn.innerHTML = "🔊 Sound On";
+        btn.className = "px-4 py-2 rounded-xl bg-slate-700 hover:bg-slate-600 text-white font-semibold text-sm transition flex items-center gap-2";
+        indicator.textContent = "🔊 Live Audio";
+        // Attempt to resume Web Audio API on click
+        getAudioContext();
+      }
+    }
+
+    // Teachers Data with Custom Descriptions
+    const teachers = [
+      { name: "Miss Wiwi", animal: "Owl", emoji: "🦉", trait: "She sees everything.", power: "Night Vision" },
+      { name: "M Coco", animal: "Duck", emoji: "🦆", trait: "He walks slowly and always smiles.", power: "Loud Quack" },
+      { name: "Miss Chevra", animal: "Goat", emoji: "🐐", trait: "She loves the 67 meme.", power: "Ultimate Balance" },
+      { name: "Miss Tchao", animal: "Unicorn", emoji: "🦄", trait: "She's always happy and colorful", power: "Rainbow Sparkles" },
+      { name: "Miss Barré-Vous", animal: "Giraffe", emoji: "🦒", trait: "She talks a lot.", power: "High Perspective" },
+      { name: "Miss Pan-Pan", animal: "Deer", emoji: "🦌", trait: "She calls us \"loulou\"", power: "Lightning Reflexes" },
+      { name: "Miss L'Homme", animal: "Fox", emoji: "🦊", trait: "She always says \"euh\"", power: "Clever Tactics" },
+      { name: "Miss Homard", animal: "Lobster", emoji: "🦞", trait: "She's very creative", power: "Pincer Pinch" },
+      { name: "M Maman", animal: "Gorilla", emoji: "🦍", trait: "He says \"Don't worry be happy\"", power: "Mighty Roar" },
+      { name: "Miss Chavannes", animal: "Hamster", emoji: "🐹", trait: "She laughs nervously", power: "Infinite Energy" },
+      { name: "M Stylo", animal: "Wolf", emoji: "🐺", trait: "He always says: \" Don't listen it s not important.\"", power: "Pack Assembly" },
+      { name: "M Haute-Banque", animal: "Dog", emoji: "🐶", trait: "He's very energetic and a great teacher", power: "Infinite Encouragement" }
+    ];
+
+    // Page state variables
+    let videoPlaying = false;
+    let videoCurrentTime = 0; // ms: 0 to 6000
+    let lastTimestamp = 0;
+    let animationFrameId = null;
+
+    // Generated dynamically for each battle
+    let currentFighter1 = null;
+    let currentFighter2 = null;
+    let winnerId = 1; // 1 or 2
+    let fightSummaryText = "";
+
+    // Card Generation Function
+    function renderCards(filterText = "") {
+      const grid = document.getElementById('teacherGrid');
+      grid.innerHTML = "";
+
+      const filtered = teachers.filter(t => 
+        t.name.toLowerCase().includes(filterText.toLowerCase()) || 
+        t.animal.toLowerCase().includes(filterText.toLowerCase())
+      );
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full text-center py-12 bg-white rounded-2xl border-4 border-dashed border-pastelPink">
+            <span class="text-5xl">💤</span>
+            <p class="text-xl font-bold mt-4 text-gray-500">No teachers found matching "${filterText}"...</p>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach((teacher, idx) => {
+        const borderCol = idx % 2 === 0 ? 'border-pastelPink' : 'border-pastelTurquoise';
+        const bgCol = idx % 2 === 0 ? 'hover:bg-pastelPink-light' : 'hover:bg-pastelTurquoise-light';
+        
+        const card = document.createElement('div');
+        card.className = `bg-white border-4 ${borderCol} rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 ${bgCol} flex flex-col justify-between`;
+        
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-4xl p-2.5 bg-butterYellow rounded-2xl shadow-inner">${teacher.emoji}</span>
+              <span class="text-xs font-bold text-gray-400 bg-gray-100 px-3 py-1 rounded-full uppercase tracking-wider">${teacher.animal} Profile</span>
+            </div>
+            <h3 class="text-2xl font-bold text-softDark mb-2">${teacher.name}</h3>
+            <p class="text-gray-600 text-sm mb-4 italic leading-relaxed">"${teacher.trait}"</p>
+          </div>
+          <div class="border-t border-gray-100 pt-4 mt-2">
+            <div class="flex justify-between items-center text-xs">
+              <span class="font-semibold text-gray-500">Signature Move:</span>
+              <span class="bg-butterYellow text-softDark font-bold px-2 py-1 rounded-md shadow-sm">${teacher.power}</span>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Populate drop down arenas
+    function populateDropdowns() {
+      const select1 = document.getElementById('fighter1Select');
+      const select2 = document.getElementById('fighter2Select');
+
+      select1.innerHTML = "";
+      select2.innerHTML = "";
+
+      teachers.forEach((t, index) => {
+        const option1 = document.createElement('option');
+        option1.value = index;
+        option1.textContent = t.name;
+        select1.appendChild(option1);
+
+        const option2 = document.createElement('option');
+        option2.value = index;
+        option2.textContent = t.name;
+        if (index === 1) option2.selected = true;
+        select2.appendChild(option2);
+      });
+    }
+
+    // Update specific card inputs/labels on selection change
+    function updateFighterDisplay(fighterNum, teacher) {
+      document.getElementById(`fighter${fighterNum}Emoji`).textContent = teacher.emoji;
+      document.getElementById(`fighter${fighterNum}Name`).textContent = teacher.name;
+      document.getElementById(`fighter${fighterNum}PowerBadge`).textContent = `Power: ${teacher.power}`;
+    }
+
+    function resetArenaUI() {
+      document.getElementById('fighter1Card').className = "flex flex-col items-center bg-white p-6 rounded-2xl border-4 border-pastelPink shadow-sm transition-all duration-300 relative overflow-hidden justify-between";
+      document.getElementById('fighter2Card').className = "flex flex-col items-center bg-white p-6 rounded-2xl border-4 border-pastelPink shadow-sm transition-all duration-300 relative overflow-hidden justify-between";
+      
+      document.getElementById('fighter1WinnerBadge').classList.add('hidden');
+      document.getElementById('fighter2WinnerBadge').classList.add('hidden');
+      
+      document.getElementById('fighter1Emoji').classList.remove('opacity-40', 'grayscale');
+      document.getElementById('fighter2Emoji').classList.remove('opacity-40', 'grayscale');
+    }
+
+    // Start video compiling/playback
+    function triggerClashVideo() {
+      const f1Idx = document.getElementById('fighter1Select').value;
+      const f2Idx = document.getElementById('fighter2Select').value;
+
+      if (f1Idx === f2Idx) {
+        alert("A teacher cannot clash with themselves! Select two different contenders.");
+        return;
+      }
+
+      resetArenaUI();
+
+      currentFighter1 = teachers[f1Idx];
+      currentFighter2 = teachers[f2Idx];
+
+      // Randomly decide a winner
+      winnerId = Math.random() < 0.5 ? 1 : 2;
+      const winner = winnerId === 1 ? currentFighter1 : currentFighter2;
+      const loser = winnerId === 1 ? currentFighter2 : currentFighter1;
+
+      // Custom scenarios
+      const scenarios = [
+        `⚔️ ${winner.name} utilizes "${winner.power}" to completely out-maneuver ${loser.name}'s "${loser.power}"! ${winner.name} wins the clash!`,
+        `⚔️ After a tense standoff, ${winner.name} (${winner.animal}) executes a perfect "${winner.power}" move, catching ${loser.name} completely off guard!`,
+        `⚔️ ${loser.name} attempts a flashy "${loser.power}" strike, but ${winner.name} counters perfectly using "${winner.power}" to claim absolute victory!`,
+        `⚔️ Class has ended, and ${winner.name} wins the final debate with "${winner.power}". ${loser.name} is left dizzy!`,
+        `⚔️ ${winner.name} turns the tide of battle with raw animal energy and "${winner.power}". ${loser.name}'s "${loser.power}" was simply not enough!`
+      ];
+      fightSummaryText = scenarios[Math.floor(Math.random() * scenarios.length)];
+      document.getElementById('clashResultText').textContent = fightSummaryText;
+
+      // Reveal Video Player Frame
+      const videoContainer = document.getElementById('clashVideoContainer');
+      videoContainer.classList.remove('hidden');
+      setTimeout(() => {
+        videoContainer.classList.remove('scale-95', 'opacity-0');
+        videoContainer.classList.add('scale-100', 'opacity-100');
+        videoContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 50);
+
+      // Start/Restart Video Timeline
+      restartVideo();
+    }
+
+    // Toggle Timeline play
+    function togglePlayPause() {
+      videoPlaying = !videoPlaying;
+      const playBtn = document.getElementById('videoPlayPauseBtn');
+      if (videoPlaying) {
+        playBtn.innerHTML = "⏸️";
+        lastTimestamp = performance.now();
+        requestAnimationFrame(updateFrameLoop);
+      } else {
+        playBtn.innerHTML = "▶️";
+      }
+    }
+
+    // Restart Timeline Video
+    function restartVideo() {
+      videoCurrentTime = 0;
+      videoPlaying = true;
+      document.getElementById('videoPlayPauseBtn').innerHTML = "⏸️";
+      
+      // Clear visual victory cards highlights on restart
+      document.getElementById('fighter1Card').classList.remove('border-yellow-400', 'bg-yellow-50', 'scale-[1.03]', 'shadow-lg');
+      document.getElementById('fighter2Card').classList.remove('border-yellow-400', 'bg-yellow-50', 'scale-[1.03]', 'shadow-lg');
+      document.getElementById('fighter1WinnerBadge').classList.add('hidden');
+      document.getElementById('fighter2WinnerBadge').classList.add('hidden');
+
+      // Play start sound
+      playSound('swoosh');
+
+      lastTimestamp = performance.now();
+      requestAnimationFrame(updateFrameLoop);
+    }
+
+    // Scrubber update listener
+    const timelineInput = document.getElementById('videoTimeline');
+    timelineInput.addEventListener('input', (e) => {
+      videoCurrentTime = parseInt(e.target.value);
+      // Force render frame immediately when manual scrubbing
+      drawFrame(videoCurrentTime);
+      updateTimerUI(videoCurrentTime);
+    });
+
+    // Update UI elements based on current playhead
+    function updateTimerUI(currentTimeMs) {
+      const totalSeconds = currentTimeMs / 1000;
+      const seconds = Math.floor(totalSeconds);
+      const milliseconds = Math.floor((currentTimeMs % 1000) / 10);
+      
+      const secondsStr = seconds.toString().padStart(2, '0');
+      const msStr = milliseconds.toString().padStart(2, '0');
+      
+      document.getElementById('videoTimer').textContent = `00:${secondsStr}.${msStr}`;
+      document.getElementById('currentTrackTime').textContent = `${totalSeconds.toFixed(1)}s`;
+      timelineInput.value = currentTimeMs;
+    }
+
+    // Animation frames controller
+    function updateFrameLoop(now) {
+      if (!videoPlaying) return;
+
+      const elapsed = now - lastTimestamp;
+      lastTimestamp = now;
+
+      const oldTime = videoCurrentTime;
+      videoCurrentTime += elapsed;
+
+      // Clip bounds
+      if (videoCurrentTime >= 6000) {
+        videoCurrentTime = 6000;
+        videoPlaying = false;
+        document.getElementById('videoPlayPauseBtn').innerHTML = "▶️";
+
+        // Draw post-battle layout cards updates
+        const winnerCard = document.getElementById(`fighter${winnerId}Card`);
+        winnerCard.classList.add('border-yellow-400', 'bg-yellow-50', 'scale-[1.03]', 'shadow-lg');
+        document.getElementById(`fighter${winnerId}WinnerBadge`).classList.remove('hidden');
+
+        const loserId = winnerId === 1 ? 2 : 1;
+        const loserCard = document.getElementById(`fighter${loserId}Card`);
+        loserCard.classList.add('opacity-75', 'border-gray-200');
+        document.getElementById(`fighter${loserId}Emoji`).classList.add('opacity-40', 'grayscale');
+      }
+
+      // Trigger audio thresholds
+      if (oldTime < 1000 && videoCurrentTime >= 1000) playSound('swoosh');
+      if (oldTime < 2400 && videoCurrentTime >= 2400) playSound('hit');
+      if (oldTime < 3200 && videoCurrentTime >= 3200) playSound('hit');
+      if (oldTime < 4000 && videoCurrentTime >= 4000) playSound('hit');
+      if (oldTime < 4600 && videoCurrentTime >= 4600) playSound('win');
+
+      // Update Slider progress track
+      updateTimerUI(videoCurrentTime);
+
+      // Render actual fight on canvas
+      drawFrame(videoCurrentTime);
+
+      if (videoPlaying) {
+        requestAnimationFrame(updateFrameLoop);
+      }
+    }
+
+    // Draw Dynamic Cinematic Canvas Frame
+    function drawFrame(t) {
+      const canvas = document.getElementById('clashCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width;
+      const h = canvas.height;
+
+      // 1. Draw Environment background
+      const skyGrad = ctx.createLinearGradient(0, 0, 0, h);
+      skyGrad.addColorStop(0, '#AEE4E4'); // pastelTurquoise
+      skyGrad.addColorStop(1, '#FCF8D5'); // butterYellow
+      ctx.fillStyle = skyGrad;
+      ctx.fillRect(0, 0, w, h);
+
+      // Draw beautiful stylized Arena platform
+      ctx.fillStyle = '#FFD1DC'; // pastelPink
+      ctx.beginPath();
+      ctx.ellipse(w/2, h - 60, 320, 45, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#2C3E50';
+      ctx.lineWidth = 4;
+      ctx.stroke();
+
+      // Draw Grid / Arena Ring markings
+      ctx.strokeStyle = 'rgba(255,255,255,0.4)';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.ellipse(w/2, h - 60, 200, 25, 0, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Return empty / static loading screen during buffer stage (0s to 1s)
+      if (t < 1000) {
+        const loadProgress = t / 1000;
+        
+        // Static lines
+        ctx.fillStyle = '#1e293b';
+        ctx.fillRect(0, 0, w, h);
+        
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+        ctx.lineWidth = 2;
+        for (let i = 0; i < h; i += 12) {
+          ctx.beginPath();
+          ctx.moveTo(0, i);
+          ctx.lineTo(w, i);
+          ctx.stroke();
+        }
+
+        // Animated loader circle
+        ctx.strokeStyle = '#AEE4E4';
+        ctx.lineWidth = 6;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.arc(w/2, h/2 - 20, 30, t * 0.01, t * 0.01 + 4.5);
+        ctx.stroke();
+
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = 'bold 22px Quicksand, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(`BUFFERING TEACHER VIDEO... ${Math.floor(loadProgress * 100)}%`, w/2, h/2 + 40);
+        ctx.font = '14px monospace';
+        ctx.fillStyle = '#F5EC9C';
+        ctx.fillText("UPDATING CLASSROOM ALIGNMENTS...", w/2, h/2 + 70);
+        return;
+      }
+
+      // Draw fighters logic based on deterministic time
+      let x1 = 150;
+      let y1 = h - 120;
+      let x2 = w - 150;
+      let y2 = h - 120;
+
+      let size1 = 70;
+      let size2 = 70;
+
+      let rotation1 = 0;
+      let rotation2 = 0;
+
+      let scale1X = 1;
+      let scale2X = -1; // Face each other
+
+      let emojiF1 = currentFighter1 ? currentFighter1.emoji : "🦉";
+      let emojiF2 = currentFighter2 ? currentFighter2.emoji : "🦆";
+
+      // STAGE 1: Cinematic Intro Entrances (1.0s to 2.2s)
+      if (t >= 1000 && t < 2200) {
+        const progress = (t - 1000) / 1200; // 0 to 1
+        
+        const easeOutElastic = (x) => {
+          const c4 = (2 * Math.PI) / 3;
+          return x === 0 ? 0 : x === 1 ? 1 : Math.pow(2, -10 * x) * Math.sin((x * 10 - 0.75) * c4) + 1;
+        };
+
+        const currentEase = easeOutElastic(progress);
+        x1 = -100 + (250 * currentEase);
+        x2 = w + 100 - (250 * currentEase);
+
+        // Highlight spotlight circles
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
+        ctx.beginPath();
+        ctx.ellipse(x1, h - 60, 45, 12, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.ellipse(x2, h - 60, 45, 12, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Reveal big text banner for names
+        ctx.fillStyle = '#2C3E50';
+        ctx.font = 'bold 24px Quicksand, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(currentFighter1 ? currentFighter1.name : "Fighter A", x1, y1 - 60);
+        ctx.fillText(currentFighter2 ? currentFighter2.name : "Fighter B", x2, y2 - 60);
+      }
+
+      // STAGE 2: Extreme Clash Excursions (2.2s to 4.5s)
+      else if (t >= 2200 && t < 4500) {
+        const battleTime = t - 2200; // 0 to 2300ms
+        
+        x1 = 200;
+        x2 = w - 200;
+
+        const drawImpactVisuals = (centerX, centerY, impactTime, emojiWord) => {
+          const age = t - impactTime;
+          if (age >= 0 && age < 400) {
+            const p = age / 400;
+            ctx.strokeStyle = '#2C3E50';
+            ctx.lineWidth = 5;
+            for (let i = 0; i < 8; i++) {
+              const angle = (i * Math.PI) / 4;
+              const r1 = 30 * p;
+              const r2 = 60 * p;
+              ctx.beginPath();
+              ctx.moveTo(centerX + Math.cos(angle)*r1, centerY + Math.sin(angle)*r1);
+              ctx.lineTo(centerX + Math.cos(angle)*r2, centerY + Math.sin(angle)*r2);
+              ctx.stroke();
+            }
+
+            ctx.save();
+            ctx.translate(centerX, centerY - 80);
+            ctx.scale(1 + (0.3 * Math.sin(p * Math.PI)), 1 + (0.3 * Math.sin(p * Math.PI)));
+            
+            ctx.fillStyle = '#FCF8D5';
+            ctx.strokeStyle = '#2C3E50';
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.arc(0, 0, 45, 0, Math.PI*2);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.fillStyle = '#2C3E50';
+            ctx.font = 'bold 16px Quicksand, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(emojiWord, 0, 5);
+            ctx.restore();
+          }
+        };
+
+        // Collision 1 movement curves
+        if (battleTime >= 0 && battleTime < 800) {
+          const p = battleTime / 800;
+          const jumpX = Math.sin(p * Math.PI) * 160;
+          x1 += jumpX;
+          x2 -= jumpX;
+          rotation1 = p * Math.PI * 2;
+          rotation2 = -p * Math.PI * 2;
+        }
+        // Collision 2 curves
+        else if (battleTime >= 800 && battleTime < 1600) {
+          const p = (battleTime - 800) / 800;
+          const jumpY = Math.sin(p * Math.PI) * 120;
+          x1 += Math.sin(p * Math.PI) * 180;
+          x2 -= Math.sin(p * Math.PI) * 180;
+          y1 -= jumpY;
+          y2 -= jumpY;
+          rotation1 = -p * Math.PI * 4;
+          rotation2 = p * Math.PI * 4;
+        }
+        // Collision 3 curves
+        else if (battleTime >= 1600 && battleTime < 2300) {
+          const p = (battleTime - 1600) / 700;
+          x1 += Math.sin(p * Math.PI) * 190;
+          x2 -= Math.sin(p * Math.PI) * 190;
+          y1 -= Math.sin(p * Math.PI) * 60;
+          y2 += Math.sin(p * Math.PI) * 60;
+        }
+
+        drawImpactVisuals(w/2, h - 120, 2400, currentFighter1.animal.toUpperCase() + "!");
+        drawImpactVisuals(w/2, h - 180, 3200, "CLASH!");
+        drawImpactVisuals(w/2, h - 120, 4000, currentFighter2.animal.toUpperCase() + "!");
+      }
+
+      // STAGE 3: The Ultimate Blow & Knockout (4.5s to 5.2s)
+      else if (t >= 4500 && t < 5200) {
+        const progress = (t - 4500) / 700;
+        
+        if (winnerId === 1) {
+          x1 = 200 + (300 * Math.sin(progress * Math.PI));
+          y1 = h - 120 - (50 * Math.sin(progress * Math.PI));
+          rotation1 = progress * Math.PI * 2;
+
+          x2 = w - 200 + (140 * progress);
+          y2 = h - 120 - (80 * Math.sin(progress * Math.PI));
+          rotation2 = progress * Math.PI * 4;
+          emojiF2 = "😵";
+        } else {
+          x2 = w - 200 - (300 * Math.sin(progress * Math.PI));
+          y2 = h - 120 - (50 * Math.sin(progress * Math.PI));
+          rotation2 = -progress * Math.PI * 2;
+
+          x1 = 200 - (140 * progress);
+          y1 = h - 120 - (80 * Math.sin(progress * Math.PI));
+          rotation1 = -progress * Math.PI * 4;
+          emojiF1 = "😵";
+        }
+
+        if (progress < 0.5) {
+          ctx.strokeStyle = '#FFFFFF';
+          ctx.lineWidth = 10 * (1 - progress * 2);
+          ctx.beginPath();
+          ctx.arc(w/2, h/2, 100 * (progress * 2), 0, Math.PI * 2);
+          ctx.stroke();
+        }
+      }
+
+      // STAGE 4: Final Victory Display (5.2s to 6.0s)
+      else {
+        const progress = (t - 5200) / 800;
+        const danceY = Math.abs(Math.sin(progress * Math.PI * 3)) * 40;
+
+        if (winnerId === 1) {
+          x1 = w/2;
+          y1 = h - 120 - danceY;
+          rotation1 = Math.sin(progress * Math.PI * 2) * 0.2;
+
+          x2 = w - 100;
+          y2 = h - 80;
+          rotation2 = Math.PI / 2;
+          emojiF2 = "😵";
+        } else {
+          x2 = w/2;
+          y2 = h - 120 - danceY;
+          rotation2 = Math.sin(progress * Math.PI * 2) * 0.2;
+
+          x1 = 100;
+          y1 = h - 80;
+          rotation1 = -Math.PI / 2;
+          emojiF1 = "😵";
+        }
+
+        // Render Crown on Winner
+        const winX = winnerId === 1 ? x1 : x2;
+        const winY = winnerId === 1 ? y1 : y2;
+        
+        ctx.save();
+        ctx.translate(winX, winY - 60);
+        ctx.scale(1.2, 1.2);
+        ctx.fillStyle = '#F5EC9C';
+        ctx.strokeStyle = '#2C3E50';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(-15, 0);
+        ctx.lineTo(-20, -15);
+        ctx.lineTo(-7, -7);
+        ctx.lineTo(0, -20);
+        ctx.lineTo(7, -7);
+        ctx.lineTo(20, -15);
+        ctx.lineTo(15, 0);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        
+        ctx.fillStyle = '#FFFFFF';
+        ctx.beginPath();
+        ctx.arc(-20, -18, 3, 0, Math.PI*2);
+        ctx.arc(0, -23, 3, 0, Math.PI*2);
+        ctx.arc(20, -18, 3, 0, Math.PI*2);
+        ctx.fill();
+        ctx.restore();
+
+        // Render "VICTORY!" Large Ribbon Banner
+        ctx.save();
+        ctx.translate(w/2, 90);
+        const bannerScale = Math.min(1, progress * 2);
+        ctx.scale(bannerScale, bannerScale);
+
+        ctx.fillStyle = '#FFD1DC';
+        ctx.strokeStyle = '#2C3E50';
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.roundRect(-240, -30, 480, 60, 15);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#2C3E50';
+        ctx.font = 'bold 26px Quicksand, sans-serif';
+        ctx.textAlign = 'center';
+        const winnerObj = winnerId === 1 ? currentFighter1 : currentFighter2;
+        ctx.fillText(`🏆 WINNER: ${winnerObj.name.toUpperCase()}!`, 0, 10);
+        ctx.restore();
+      }
+
+      // Fighter 1 Draw
+      ctx.save();
+      ctx.translate(x1, y1);
+      ctx.scale(scale1X, 1);
+      ctx.rotate(rotation1);
+      ctx.font = `${size1}px sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(emojiF1, 0, 0);
+      ctx.restore();
+
+      // Fighter 2 Draw
+      ctx.save();
+      ctx.translate(x2, y2);
+      ctx.scale(scale2X, 1);
+      ctx.rotate(rotation2);
+      ctx.font = `${size2}px sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(emojiF2, 0, 0);
+      ctx.restore();
+
+      // Camera Scanline overlays
+      ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+      ctx.lineWidth = 1;
+      for (let y = 0; y < h; y += 4) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+      }
+    }
+
+    // Search input listener
+    document.getElementById('teacherSearch').addEventListener('input', (e) => {
+      renderCards(e.target.value);
+    });
+
+    // Initialize Page on DOM Loaded
+    window.addEventListener('DOMContentLoaded', () => {
+      renderCards();
+      populateDropdowns();
+      
+      // Setup initial fighter displays
+      const f1 = teachers[0];
+      const f2 = teachers[1];
+      updateFighterDisplay(1, f1);
+      updateFighterDisplay(2, f2);
+    });
+  </script>
+</body>
+</html>
